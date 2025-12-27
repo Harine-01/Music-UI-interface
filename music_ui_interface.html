@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body{background:linear-gradient(to right,purple,pink);height:100vh;display:flex;justify-content:center;align-items:center;margin:0;font-family:Arial}
+.player{background:white;width:300px;padding:20px;border-radius:20px;text-align:center;box-shadow:0 10px 20px rgba(0,0,0,0.2)}
+h1{color:pink;margin-bottom:20px}
+.album{width:200px;height:200px;border-radius:10px;margin:auto;overflow:hidden;border:5px solid pink}
+.album img{width:100%;height:100%}
+.song{font-size:20px;font-weight:bold;margin:15px 0 5px}
+.artist{color:gray;margin-bottom:15px}
+.progress{background:lightgray;height:6px;border-radius:3px;margin:15px 0}
+.progress div{background:purple;height:100%;width:30%;border-radius:3px}
+.time{display:flex;justify-content:space-between;color:gray;margin-bottom:15px}
+.controls{display:flex;justify-content:center;gap:15px;margin:15px 0}
+button{width:50px;height:50px;border-radius:50%;border:none;background:purple;color:white;font-size:18px}
+.play{width:60px;height:60px;background:pink}
+.playlist{margin-top:20px;text-align:left}
+.playlist-item{display:flex;align-items:center;gap:10px;background:#f0f0f0;padding:10px;border-radius:10px;margin-bottom:8px}
+.playlist-item img{width:40px;height:40px;border-radius:5px}
+.song-info{flex:1}
+.song-name{font-weight:bold}
+.song-artist{font-size:12px;color:gray}
+.active{background:purple;color:white}
+.active .song-artist{color:#ddd}
+
+/* CSS-only play button with checkbox hack */
+#play-toggle{display:none}
+#play-toggle:checked + .play{background:purple}
+#play-toggle:checked + .play::before{content:"⏸"}
+#play-toggle:not(:checked) + .play::before{content:"▶"}
+.play::before{font-size:24px}
+
+/* CSS-only playlist selection with radio buttons */
+.song-radio{display:none}
+#song1:checked ~ .playlist label[for="song1"],
+#song2:checked ~ .playlist label[for="song2"],
+#song3:checked ~ .playlist label[for="song3"],
+#song4:checked ~ .playlist label[for="song4"] {
+    background:purple;color:white
+}
+
+/* Hide hover effects since they need JavaScript */
+button:hover, .playlist-item:hover {
+    cursor: default;
+    transform: none;
+}
+</style>
+</head>
+<body>
+<div class="player">
+    <h1>🎵 Music Player</h1>
+    
+    <!-- Hidden checkboxes/radios for CSS interaction -->
+    <input type="checkbox" id="play-toggle">
+    <input type="radio" name="song" id="song1" class="song-radio" checked>
+    <input type="radio" name="song" id="song2" class="song-radio">
+    <input type="radio" name="song" id="song3" class="song-radio">
+    <input type="radio" name="song" id="song4" class="song-radio">
+    
+    <!-- Play button is actually a label -->
+    <label for="play-toggle" class="play"></label>
+    
+    <div class="album"><img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=200&h=200&fit=crop"></div>
+    <div class="song">Animals</div>
+    <div class="artist">Maroon 5</div>
+    <div class="progress"><div></div></div>
+    <div class="time"><span>1:30</span><span>4:00</span></div>
+    
+    <!-- Buttons are just for show (no JavaScript) -->
+    <div class="controls">
+        <button>⏮</button>
+        <button>⏭</button>
+    </div>
+    
+    <!-- Volume is just visual -->
+    <div class="volume">Volume<div class="volume-slider"><div></div></div></div>
+    
+    <!-- Playlist items are labels for radio buttons -->
+    <div class="playlist">
+        <label for="song1" class="playlist-item active">
+            <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=100&h=100&fit=crop">
+            <div class="song-info">
+                <div class="song-name">Animals</div>
+                <div class="song-artist">Maroon 5</div>
+            </div>
+        </label>
+        
+        <label for="song2" class="playlist-item">
+            <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=100&h=100&fit=crop">
+            <div class="song-info">
+                <div class="song-name">Bye Bye Bye</div>
+                <div class="song-artist">*NSYNC</div>
+            </div>
+        </label>
+        
+        <label for="song3" class="playlist-item">
+            <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=100&h=100&fit=crop">
+            <div class="song-info">
+                <div class="song-name">Poker Face</div>
+                <div class="song-artist">Lady Gaga</div>
+            </div>
+        </label>
+        
+        <label for="song4" class="playlist-item">
+            <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=100&h=100&fit=crop">
+            <div class="song-info">
+                <div class="song-name">Side To Side</div>
+                <div class="song-artist">Ariana Grande</div>
+            </div>
+        </label>
+    </div>
+</div>
+</body>
+</html>
